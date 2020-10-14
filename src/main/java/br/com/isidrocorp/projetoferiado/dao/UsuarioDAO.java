@@ -10,5 +10,6 @@ public interface UsuarioDAO extends CrudRepository<Usuario,Integer> {
 	// se é findBy = SELECT *** from tbl_usuario WHERE ***
 	public Usuario findByRacfAndSenha(String racf, String senha);
 	public Usuario findByRacf(String racf);
+	public Usuario findByRacfOrFuncional(String racf, String funcional);
 
 }

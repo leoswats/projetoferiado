@@ -17,7 +17,7 @@ public class UsuarioController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<Usuario> login(@RequestBody Usuario dadosUserLogin) {
-		Usuario resultado = dao.findByRacf(dadosUserLogin.getRacf());
+		Usuario resultado = dao.findByRacfOrFuncional(dadosUserLogin.getRacf(), dadosUserLogin.getFuncional());
 		if (resultado != null) {  // encontrou!!
 			if (resultado.getSenha().equals(dadosUserLogin.getSenha())) { // senhas conferem???
  				return ResponseEntity.ok(resultado);
