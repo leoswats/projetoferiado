@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.isidrocorp.projetoferiado.dao.FeriadoDAO;
+import br.com.isidrocorp.projetoferiado.model.Agencia;
 import br.com.isidrocorp.projetoferiado.model.Feriado;
 
 @RestController
+@CrossOrigin("*")
 public class FeriadoController {
 	
 	@Autowired
@@ -22,7 +26,7 @@ public class FeriadoController {
 	@GetMapping("/feriados")
 	public ArrayList<Feriado> listarTudo(){
 		ArrayList<Feriado> lista;
-		lista = (ArrayList<Feriado>)dao.findAll();
+		lista = dao.findByOrderByDataInicio();
 		return lista;
 	}
 	
@@ -37,4 +41,13 @@ public class FeriadoController {
 		}
 	}
 
+	
+	@GetMapping("/feriados/agencia/{id}")
+	public ArrayList<Feriado> recuperarPorAgencia(@PathVariable int id){
+		Agencia ag = new Agencia();
+		ag.setId(id);
+		ArrayList<Feriado> lista;
+		lista = dao.findByAgencia(ag);
+		return lista;
+	}
 }

@@ -3,13 +3,14 @@ package br.com.isidrocorp.projetoferiado.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.isidrocorp.projetoferiado.dao.AgenciaDAO;
 import br.com.isidrocorp.projetoferiado.model.Agencia;
 
-
+@CrossOrigin("*")
 @RestController
 public class AgenciaController {
 	/*  O que faz o Autowired? Tecnicamente ele faz uma Injeção de Dependências
